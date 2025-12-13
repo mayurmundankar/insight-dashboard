@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@theme {
+  --color-er-dark: #0B0E14;
+  --color-er-panel: rgba(20, 25, 35, 0.8);
+  --color-er-blue: #3B82F6;
+  --color-er-red: #EF4444;
+  --color-status-good: #22C55E;
+  --color-status-warn: #EAB308;
+  --font-family-sans: 'Inter', system-ui, sans-serif;
+}
+
+:root {
+  font-family: 'Inter', system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #000000;
+  overflow: hidden;
+}
