@@ -2,6 +2,13 @@
 
 A responsive, interactive robot monitoring dashboard built with React, Three.js, and Tailwind CSS. This project implements a professional UI/UX design featuring real-time camera feeds, 3D point cloud visualization, and intuitive robot controls.
 
+# AN ASSIGNMENT BY - 
+
+Full Name: Mayur Mundankar
+GitHub Username: mayurmundankar
+Contact Number: +91-7769858440
+Email ID: mayurworkplace@gmail.com
+
 
 ## 🚀 Features
 
