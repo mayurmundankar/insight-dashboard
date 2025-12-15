@@ -33,8 +33,8 @@ export default function MapView({ className }) {
         camera={{ position: [0, 8, 15], fov: 50 }}
         gl={{ antialias: true }}
       >
-        <color attach="background" args={['#1a1a1a']} />
-        <ambientLight intensity={0.5} />
+        <color attach="background" args={['#f0f0f0']} />
+        <ambientLight intensity={0.7} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
         
@@ -54,8 +54,8 @@ export default function MapView({ className }) {
         {/* Grid helper for reference */}
         <Grid 
           args={[20, 20]} 
-          cellColor="#3B82F6" 
-          sectionColor="#1e40af"
+          cellColor="#cbd5e1" 
+          sectionColor="#64748b"
           fadeDistance={30}
           fadeStrength={1}
         />

@@ -2,7 +2,6 @@
 
 A responsive, interactive robot monitoring dashboard built with React, Three.js, and Tailwind CSS. This project implements a professional UI/UX design featuring real-time camera feeds, 3D point cloud visualization, and intuitive robot controls.
 
-![Dashboard Preview](./docs/preview.png)
 
 ## 🚀 Features
 
@@ -10,6 +9,7 @@ A responsive, interactive robot monitoring dashboard built with React, Three.js,
 - **3D Point Cloud Map** - Interactive 3D visualization using Three.js and @react-three/fiber
 - **View Swapping** - Smooth animated transitions between camera and map views (Picture-in-Picture)
 - **Circular Robot Controls** - Intuitive circular D-Pad and emergency stop button
+- **Keyboard Controls** - Control the robot using Arrow keys (Up, Down, Left, Right) in Manual mode
 - **Auto/Manual Modes** - Toggle between autonomous and manual control modes with clean white/black styling
 - **Status Monitoring** - Battery level, signal strength, failsafe, and system status with pill-shaped indicators
 - **Mission Status** - "On Mission 1234" indicator and Quick Goal button
@@ -50,7 +50,7 @@ Before you begin, ensure you have the following installed:
    
    The project includes sample assets in the `public/` folder:
    - `office1.pcd` - Point cloud data file for 3D visualization
-   - `BigBuckBunny_320x180.mp4` - Demo video file for the camera feed
+   - `motion-detection-outside-entry-1280x720.mp4` - Demo video file for the camera feed
    
    *You can replace these with your own files to customize the experience.*
 
@@ -84,7 +84,7 @@ npm run preview
 fs-insight-dashboard/
 ├── public/                 # Static assets
 │   ├── office1.pcd         # Point cloud file for 3D map
-│   └── BigBuckBunny_320x180.mp4  # Demo video for camera feed
+│   └── motion-detection-outside-entry-1280x720.mp4  # Demo video for camera feed
 ├── src/
 │   ├── components/
 │   │   ├── Camera/
@@ -119,6 +119,7 @@ fs-insight-dashboard/
 
 ### Robot Controls
 - **Circular D-Pad**: Control robot movement (up, down, left, right) with intuitive circular design
+- **Keyboard Controls**: Use Arrow keys on your keyboard to move the robot (only in MANUAL mode)
 - **Emergency Stop**: Large circular button with gradient styling - click to halt all operations
 - Controls are disabled in AUTO mode and when E-Stop is active
 
@@ -156,7 +157,7 @@ Modify camera position, lighting, and grid in `src/components/Map/MapView.jsx`:
 ```
 
 ### Camera Feed
-Replace the video file in `public/BigBuckBunny_320x180.mp4` or update the source in `src/components/Camera/CameraFeed.jsx`:
+Replace the video file in `public/motion-detection-outside-entry-1280x720.mp4` or update the source in `src/components/Camera/CameraFeed.jsx`:
 ```javascript
 src="/your-video-file.mp4"
 ```
@@ -196,7 +197,7 @@ The dashboard adapts to different screen sizes:
 ### Issue: Styles not loading / Plain HTML appearance
 - **This project uses Tailwind CSS v4** which requires a different setup than v3
 - Ensure you have `@import "tailwindcss";` at the top of `src/index.css`
-- No `tailwind.config.js` or `postcss.config.js` needed for v4
+- No `tailwind.config.js` needed for v4
 - Restart the dev server after any CSS changes
 
 ### Issue: 3D map not loading
@@ -206,7 +207,7 @@ The dashboard adapts to different screen sizes:
 - Verify the file path in `MapView.jsx` matches your file name
 
 ### Issue: Camera feed not showing
-- Verify `BigBuckBunny_320x180.mp4` exists in `public/` folder
+- Verify `motion-detection-outside-entry-1280x720.mp4` exists in `public/` folder
 - Check video format compatibility (MP4 with H.264 recommended)
 - For live streams, integrate WebRTC or HLS player
 
@@ -233,14 +234,6 @@ This implementation follows a clean, modern design with these key principles:
 7. **Circular Controls**: Intuitive circular D-Pad and emergency stop matching reference design
 8. **Minimal Clutter**: Removed unnecessary panels and borders for a spacious, breathable layout
 
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 ## 📄 License
 
@@ -256,6 +249,3 @@ Built as part of the FS Insight Dashboard assignment - demonstrating modern web 
 - Three.js Community: 3D visualization resources
 - React Team: Excellent documentation and tools
 
----
-
-**Note**: This is a demonstration project. For production use, implement proper authentication, error handling, logging, and backend integration.

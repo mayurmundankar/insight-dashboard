@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { 
   ArrowUp, 
   ArrowDown, 
@@ -12,7 +12,7 @@ import {
 import { useAppStore } from '../../store/useStore'
 
 export default function RobotControls() {
-  const { robotMode } = useAppStore()
+  const { robotMode, setRobotMode } = useAppStore()
   const [eStopActive, setEStopActive] = useState(false)
   const [pressedKey, setPressedKey] = useState(null)
 
@@ -30,8 +30,43 @@ export default function RobotControls() {
     console.log('Emergency Stop:', !eStopActive)
   }
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (robotMode === 'AUTO' || eStopActive) return
+      
+      switch(e.key) {
+        case 'ArrowUp':
+          handleDirectionPress('forward')
+          break
+        case 'ArrowDown':
+          handleDirectionPress('backward')
+          break
+        case 'ArrowLeft':
+          handleDirectionPress('left')
+          break
+        case 'ArrowRight':
+          handleDirectionPress('right')
+          break
+      }
+    }
+
+    const handleKeyUp = (e) => {
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        handleDirectionRelease()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('keyup', handleKeyUp)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('keyup', handleKeyUp)
+    }
+  }, [robotMode, eStopActive])
+
   return (
-    <div className="absolute bottom-8 right-8 flex flex-col gap-6 pointer-events-auto">
+    <div className="absolute bottom-8 right-8 flex flex-col gap-6 pointer-events-auto z-50">
       {/* Emergency Stop - Circular Design */}
       <div className="relative w-32 h-32 mx-auto">
         <button
@@ -145,6 +180,17 @@ export default function RobotControls() {
           <ArrowRight className="w-5 h-5 text-white" />
         </button>
       </div>
+
+      {robotMode === 'AUTO' && !eStopActive && (
+        <button 
+          onClick={() => setRobotMode('MANUAL')}
+          className="bg-blue-500/20 backdrop-blur-md border border-blue-500 rounded-lg p-2 w-full hover:bg-blue-500/30 transition-colors cursor-pointer"
+        >
+          <p className="text-xs text-blue-400 text-center font-semibold">
+            Auto Mode Active (Click to Take Control)
+          </p>
+        </button>
+      )}
 
       {eStopActive && (
         <div className="bg-red-500/20 backdrop-blur-md border border-red-500 rounded-lg p-2 animate-pulse">

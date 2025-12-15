@@ -1,16 +1,16 @@
 import { useAppStore } from '../../store/useStore'
-import { Battery, Wifi, ShieldCheck, Activity, Pause, ArrowRight } from 'lucide-react'
+import { Battery, Signal, ShieldCheck, Activity, Pause, ArrowRight } from 'lucide-react'
 
 // Helper for the small status text items
-const TelemetryItem = ({ icon: Icon, label, value, color = "text-green-500" }) => (
+const TelemetryItem = ({ icon: Icon, label, value, color = "text-green-500", showSeparator = true }) => (
   <div className="flex items-center gap-2 text-sm">
     {Icon && <Icon className={`w-4 h-4 ${color}`} />}
     <span className="text-gray-400 font-medium text-xs lg:text-sm">{label}</span>
-    <span className={`font-bold text-xs lg:text-sm ${color === 'text-white' ? 'text-white' : 'text-green-500'}`}>
+    <span className={`font-bold text-xs lg:text-sm ${color}`}>
       {value}
     </span>
-    {/* Small separator dot */}
-    <div className="w-1 h-1 rounded-full bg-gray-700 mx-2 last:hidden" />
+    {/* Small separator dot (render only when requested) */}
+    {showSeparator && <div className="w-1 h-1 rounded-full bg-gray-700 mx-2" />}
   </div>
 )
 
@@ -41,11 +41,11 @@ export default function TopBar() {
       </div>
 
       {/* CENTER ISLAND: Telemetry */}
-      <div className="pointer-events-auto bg-[#0F1218] border border-white/10 rounded-lg px-6 py-3 flex items-center gap-1 shadow-xl">
-        <TelemetryItem label="100%" value="" icon={Battery} color="text-green-500" />
-        <TelemetryItem label="" value="Strong" icon={Wifi} color="text-yellow-500" />
-        <TelemetryItem label="Failsafe" value="Okay" color="text-green-500" />
-        <TelemetryItem label="System" value="Okay" color="text-green-500" />
+      <div className="pointer-events-auto bg-[#0F1218] border border-white/10 rounded-lg px-6 py-3 flex items-center gap-3 shadow-xl">
+        <TelemetryItem label="100%" value="" icon={Battery} color="text-green-500" showSeparator={true} />
+        <TelemetryItem label="" value="Strong" icon={Signal} color="text-yellow-500" showSeparator={true} />
+        <TelemetryItem label="Failsafe" value="Okay" color="text-green-500" showSeparator={true} />
+        <TelemetryItem label="System" value="Okay" color="text-green-500" showSeparator={false} />
       </div>
 
       {/* RIGHT ISLAND: Mode & Action */}

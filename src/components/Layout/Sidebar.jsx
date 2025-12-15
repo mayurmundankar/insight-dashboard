@@ -1,11 +1,12 @@
-import { LayoutGrid, Map, MapPin, Target, Settings, User } from 'lucide-react'
+import { LayoutGrid, Map, VectorSquare, MapPin, Crosshair, ChartNetwork, User } from 'lucide-react'
 
 const navItems = [
   { icon: LayoutGrid, active: true }, // Dashboard icon
   { icon: Map, active: false },
   { icon: MapPin, active: false },
-  { icon: Target, active: false }, // Using Target for the calibrate icon
-  { icon: Settings, active: false }, // Settings is usually at bottom, but shown higher in design
+  { icon: VectorSquare, active: false },
+  { icon: Crosshair, active: false }, // Using Target for the calibrate icon
+  { icon: ChartNetwork, active: false }, // Settings is usually at bottom, but shown higher in design
 ]
 
 export default function Sidebar() {
